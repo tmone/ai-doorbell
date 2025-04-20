@@ -41,14 +41,28 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+    return true;
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
-    process.exit(1);
+    return false;
+    // Removed the "Continuing without database connection" message since we now require DB connection
   }
 };
 
-// Connect to the database
-connectDB();
+// Connect to the database and then start the server
+const startServer = async () => {
+  const dbConnected = await connectDB();
+  
+  if (!dbConnected) {
+    console.error('Failed to connect to the database. Server will not start.');
+    process.exit(1);
+  }
+  
+  // Start the server only if the database is connected
+  app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  });
+};
 
 // Simple route for testing
 app.get('/', (req, res) => {
@@ -65,9 +79,7 @@ app.use((err, req, res, next) => {
 });
 
 // Set port for the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-});
+// Start the server with DB check
+startServer();

@@ -1,15 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class FaceRegistrationPageVI extends StatefulWidget {
   final List<CameraDescription> cameras;
 
-  const FaceRegistrationPageVI({Key? key, required this.cameras}) : super(key: key);
+  const FaceRegistrationPageVI({super.key, required this.cameras});
 
   @override
   State<FaceRegistrationPageVI> createState() => _FaceRegistrationPageVIState();
@@ -162,7 +159,7 @@ class _FaceRegistrationPageVIState extends State<FaceRegistrationPageVI> {
               await http.MultipartFile.fromPath(
                 'faceImages', 
                 file.path,
-                filename: 'face_${direction}.jpg',
+                filename: 'face_$direction.jpg',
               ),
             );
           }
