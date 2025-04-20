@@ -24,6 +24,33 @@ AI Doorbell is an intelligent facial recognition system that utilizes camera tec
 - **IoT**: Raspberry Pi, Arduino
 - **Cloud**: AWS/Azure for processing and storage
 
+## Project Structure
+
+AI Doorbell is organized into 3 separate components:
+
+1. **Server**: Backend API and data processing
+2. **UI**: Cross-platform user interfaces
+3. **Training model**: AI model training and optimization
+
+```
+ai-doorbell/
+├── server/              # API Server and AI processing
+│   ├── api/             # REST API endpoints
+│   ├── models/          # Trained AI models
+│   └── utils/           # Helper utilities
+├── ui/                  # Cross-platform Flutter application
+│   ├── android/         # Android source
+│   ├── ios/             # iOS source
+│   ├── web/             # Web source
+│   └── lib/             # Shared Flutter source
+├── training/            # Model training and optimization
+│   ├── data/            # Training data
+│   ├── models/          # Model definitions
+│   └── scripts/         # Training scripts
+├── iot-setup/           # Source and setup for IoT devices
+└── docs/                # Documentation and guides
+```
+
 ## Installation
 
 ### System Requirements
@@ -33,12 +60,12 @@ AI Doorbell is an intelligent facial recognition system that utilizes camera tec
 - Python (v3.8+) for AI models
 - Camera device (webcam or IP camera)
 
-### Backend Installation
+### 1. Server Installation
 
 ```bash
 # Clone repository
 git clone https://github.com/tmone/ai-doorbell.git
-cd ai-doorbell/backend
+cd ai-doorbell/server
 
 # Install dependencies
 npm install
@@ -50,10 +77,10 @@ pip install -r requirements.txt
 npm start
 ```
 
-### Flutter App Installation (Web, Android, iOS)
+### 2. UI Installation (Web, Android, iOS)
 
 ```bash
-cd ../flutter_app
+cd ai-doorbell/ui
 # Install dependencies
 flutter pub get
 
@@ -72,20 +99,15 @@ flutter build ios     # iOS
 flutter build web     # Web
 ```
 
-### IoT Device Setup
+### 3. Training Model Setup
 
-See detailed instructions in the `/iot-setup` directory
+```bash
+cd ai-doorbell/training
+# Install dependencies
+pip install -r requirements.txt
 
-## Project Structure
-
-```
-ai-doorbell/
-├── backend/             # API Server and AI processing
-├── flutter_app/         # Cross-platform Flutter application (Web, Android, iOS)
-├── iot-setup/           # Source code and instructions for IoT devices
-├── models/              # Trained AI models (YOLO and Kaggle models)
-├── training/            # Source code and data for model training
-└── docs/                # Documentation and guides
+# Run training
+python train.py
 ```
 
 ## Usage
