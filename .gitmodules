@@ -1,0 +1,6 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/tmone/ai-doorbell-server.git
+[submodule "ui"]
+	path = ui
+	url = https://github.com/tmone/ai-doorbell-ui.git
